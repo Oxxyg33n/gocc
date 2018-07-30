@@ -2,12 +2,9 @@ package gocc
 
 import (
 	"encoding/json"
-	"os"
-
-	"log"
-
 	"fmt"
-
+	"log"
+	"os"
 	"strconv"
 
 	"github.com/juju/errors"
