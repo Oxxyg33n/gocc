@@ -12,26 +12,26 @@ import (
 
 const baseURL = "https://openexchangerates.org/api/"
 
-type ExchangeRatesResponse struct {
+type exchangeRatesResponse struct {
 	Timestamp   int                `json:"timestamp"`
 	Rates       map[string]float64 `json:"rates"`
 	Error       bool               `json:"error"`
 	Description string             `json:"description"`
 }
 
-func (e ExchangeRatesResponse) getTimeStamp() int {
+func (e exchangeRatesResponse) getTimeStamp() int {
 	return e.Timestamp
 }
 
-func (e ExchangeRatesResponse) getRates() map[string]float64 {
+func (e exchangeRatesResponse) getRates() map[string]float64 {
 	return e.Rates
 }
 
-func (e ExchangeRatesResponse) getError() bool {
+func (e exchangeRatesResponse) getError() bool {
 	return e.Error
 }
 
-func (e ExchangeRatesResponse) getDescription() string {
+func (e exchangeRatesResponse) getDescription() string {
 	return e.Description
 }
 
@@ -69,7 +69,7 @@ func ShowExchangeRate(baseCurrency string, showAlt bool) (int, map[string]float6
 		return 0, map[string]float64{}, errors.Annotatef(err, "getting response from %s url failed", url)
 	}
 
-	rates := ExchangeRatesResponse{}
+	rates := exchangeRatesResponse{}
 	err = json.Unmarshal(resp, &rates)
 	if err != nil {
 		log.Println(err)
