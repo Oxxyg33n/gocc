@@ -35,7 +35,7 @@ func (e exchangeRatesResponse) getDescription() string {
 	return e.Description
 }
 
-// AvailableCurrencies() returns list of available currencies
+// AvailableCurrencies returns list of available currencies
 func AvailableCurrencies() (map[string]string, error) {
 	url := baseURL + "currencies.json"
 	resp, err := newRequest().Get(url)
@@ -53,8 +53,10 @@ func AvailableCurrencies() (map[string]string, error) {
 	return cMap, nil
 }
 
-// ShowExchangeRates(baseCurrency) returns a map with exchange rates for currency baseCurrency
-// ex: ShowExchangeRate("USD")
+// ShowExchangeRate returns a map with exchange rates for currency baseCurrency
+// ex: ShowExchangeRate("USD", false)
+// Additional param showAlt can be either true or false (bool)
+// If it's true then it will retrieve the list with alternative currencies
 func ShowExchangeRate(baseCurrency string, showAlt bool) (int, map[string]float64, error) {
 	appID := os.Getenv("OER_APP_ID")
 
@@ -76,14 +78,14 @@ func ShowExchangeRate(baseCurrency string, showAlt bool) (int, map[string]float6
 		return 0, map[string]float64{}, errors.Annotatef(err, "unmarshalling json response %s failed", resp)
 	}
 
-	if rates.getError() == true {
+	if rates.getError() {
 		return 0, nil, errors.New(rates.getDescription())
 	}
 
 	return rates.getTimeStamp(), rates.getRates(), nil
 }
 
-// ConvertCurrency(amount) converts <amount> USD dollars to EURO/GBP/CAD/YEN/BTC
+// ConvertCurrency converts <amount> USD dollars to EURO/GBP/CAD/YEN/BTC
 // ex: ConvertCurrency(100)
 // nolint: gocyclo
 func ConvertCurrency(baseCurrency string, amount float64) (string, error) {
