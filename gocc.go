@@ -19,19 +19,19 @@ type ExchangeRatesResponse struct {
 	Description string             `json:"description"`
 }
 
-func (e ExchangeRatesResponse) GetTimeStamp() int {
+func (e ExchangeRatesResponse) getTimeStamp() int {
 	return e.Timestamp
 }
 
-func (e ExchangeRatesResponse) GetRates() map[string]float64 {
+func (e ExchangeRatesResponse) getRates() map[string]float64 {
 	return e.Rates
 }
 
-func (e ExchangeRatesResponse) GetError() bool {
+func (e ExchangeRatesResponse) getError() bool {
 	return e.Error
 }
 
-func (e ExchangeRatesResponse) GetDescription() string {
+func (e ExchangeRatesResponse) getDescription() string {
 	return e.Description
 }
 
@@ -76,11 +76,11 @@ func ShowExchangeRate(baseCurrency string, showAlt bool) (int, map[string]float6
 		return 0, map[string]float64{}, errors.Annotatef(err, "unmarshalling json response %s failed", resp)
 	}
 
-	if rates.GetError() == true {
-		return 0, nil, errors.New(rates.GetDescription())
+	if rates.getError() == true {
+		return 0, nil, errors.New(rates.getDescription())
 	}
 
-	return rates.GetTimeStamp(), rates.GetRates(), nil
+	return rates.getTimeStamp(), rates.getRates(), nil
 }
 
 // ConvertCurrency(amount) converts <amount> USD dollars to EURO/GBP/CAD/YEN/BTC

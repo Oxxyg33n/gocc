@@ -57,11 +57,12 @@ Then we can do something like this:
 				continue
 			}
 		}
-
+		
 Now, to convert USD dollars or other base currency (available only to developer, enterprise and unlimited plans)
 to EUR/GBP/CAD/YET/BTC/LTC and print out results
 
         convertedValue, _ := gocc.ConvertCurrency("USD", 100.50)
         
+
 ## Credits
 Thanks to [DiSiquera and his GoCurrency](https://github.com/DiSiqueira/GoCurrency) for request.go :)
