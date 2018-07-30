@@ -15,7 +15,7 @@ or just clone the repository in desired location with HTTPS:
 ## How to use
 First, import the package:
 
-`import "github.com/oxxyg33n/gocc`
+`import "github.com/oxxyg33n/gocc"`
 
 Now, to show a list of all available currencies
 
