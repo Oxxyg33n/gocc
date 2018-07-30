@@ -1,4 +1,4 @@
-#GOCC - GO Currency Converter & Wrapper for OXR
+# GOCC - GO Currency Converter & Wrapper for OXR
 
 Wrapper & Currency Converter written in Golang for [Open Exchange Rates](https://openexchangerates.org/).
 It provides simple to use methods to make calls to the API and get responses
