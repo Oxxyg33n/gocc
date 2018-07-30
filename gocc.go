@@ -85,6 +85,7 @@ func ShowExchangeRate(baseCurrency string, showAlt bool) (int, map[string]float6
 
 // ConvertCurrency(amount) converts <amount> USD dollars to EURO/GBP/CAD/YEN/BTC
 // ex: ConvertCurrency(100)
+// nolint: gocyclo
 func ConvertCurrency(baseCurrency string, amount float64) (string, error) {
 	// Show alternative currencies?
 	showAlt := true
